@@ -10,6 +10,11 @@
   "author": "Edo",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "lodash": "^4.17.21",
+    "pg-promise": "^10.11.1"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0"
   }
 }
