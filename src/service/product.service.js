@@ -1,6 +1,7 @@
 // const pgp = require('pg-promise')(/* options */)
 // const db = pgp('postgres://username:password@host:port/database')
 const _ = require('lodash')
+const {FailedCreateError} = require("../utils/apperror");
 
 const ProductService = (productRepository) => {
     const {getAll, getOne, createOne, updateOne, deleteOne} = productRepository()
@@ -11,7 +12,11 @@ const ProductService = (productRepository) => {
         return await getOne(id)
     }
     const newProductRegistration = async (newProduct) => {
-        return await createOne(newProduct);
+        try {
+            return await createOne(newProduct);
+        } catch (e) {
+            throw new FailedCreateError('Failed to create product')
+        }
     }
     const updateProductInfo = async (newProduct) => {
         return await updateOne(newProduct)

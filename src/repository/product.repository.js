@@ -1,26 +1,24 @@
 const productsDb = []
-// const pgp = require('pg-promise')(/* options */)
-// const db = pgp('postgres://username:password@host:port/database')
 const _ = require('lodash')
-
+const db = require('../db')
+const {v4} = require('uuid');
 
 const ProductRepository = () => {
-    const getAll = () => {
-        return new Promise((resolve, reject) => {
-            resolve(productsDb)
-        })
+    const getAll = async () => {
+        return await db.any('select * from m_product')
     }
-    const getOne = (id) => {
-        return new Promise((resolve, reject) => {
-            const res = _.filter(productsDb, (o) => o.id === id);
-            resolve(res)
-        })
+    const getOne = async (id) => {
+        return await db.one('select * from m_product where product_code=$1', id)
     }
-    const createOne = (newProduct) => {
-        return new Promise((resolve, reject) => {
-            productsDb.push(newProduct)
-            resolve(newProduct)
-        })
+    const createOne = async (newProduct) => {
+        const id = v4();
+        const timeStampCreated = new Date()
+        try {
+            return await db.none('insert into m_product(id,product_code,product_name,category_id,created_at,updated_at) values($1,$2,$3,$4,$5,$6)'
+                ,[id, newProduct.productCode, newProduct.productName, newProduct.categoryId, timeStampCreated, timeStampCreated])
+        } catch (e) {
+            throw e
+        }
     }
     const updateOne = (newProduct) => {
         return new Promise((resolve, reject) => {

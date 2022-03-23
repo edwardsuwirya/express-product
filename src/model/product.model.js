@@ -1,8 +1,12 @@
-const Product = (id, productName, productDescription) => {
+const Product = (id, productCode, productName, categoryId, createdAt, updatedAt, deletedAt) => {
     return {
         id,
+        productCode,
         productName,
-        productDescription
+        categoryId,
+        createdAt,
+        updatedAt,
+        deletedAt
     }
 }
 
