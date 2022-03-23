@@ -10,6 +10,7 @@
   "author": "Edo",
   "license": "ISC",
   "dependencies": {
+    "bunyan": "^1.8.15",
     "express": "^4.17.3",
     "lodash": "^4.17.21",
     "pg-promise": "^10.11.1",

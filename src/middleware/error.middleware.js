@@ -1,7 +1,5 @@
 const errorMiddleware = (error, req, res, next) => {
-    console.log("Error Handling Middleware")
-    console.log('Path: ', req.path)
-    console.error('Error: ', error)
+    req.log.error(error.message)
 
     if (error.type === 'REDIRECT')
         res.redirect('/error')
