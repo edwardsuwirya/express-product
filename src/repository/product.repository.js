@@ -1,10 +1,9 @@
 const productsDb = []
 const _ = require('lodash')
-const db = require('../db')
 const {v4} = require('uuid');
 const log = require('../logger')
 
-const ProductRepository = () => {
+const ProductRepository = (db) => {
     const lg = log.child({'repo': 'product'}, true)
     const getAll = async () => {
         return await db.any('select * from m_product')

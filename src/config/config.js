@@ -1,6 +1,6 @@
 const dotenv = require('dotenv');
 
-const config = () => {
+const Config = () => {
     dotenv.config()
     return {
         name: process.env.APP_NAME || 'Application',
@@ -15,4 +15,4 @@ const config = () => {
     }
 }
 
-module.exports = config
+module.exports = Config

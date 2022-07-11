@@ -1,7 +1,9 @@
-const ProductController = () => {
+const ProductController = (productService) => {
+    const {getAllProductInfo, newProductRegistration, updateProductInfo, deactivatedProduct} = productService()
+
     const getProductList = async (req, res, next) => {
         try {
-            const products = await req.service.getAllProductInfo()
+            const products = await getAllProductInfo()
             res.json(products);
         } catch (e) {
             next(e)
@@ -11,7 +13,7 @@ const ProductController = () => {
     const addNewProduct = async (req, res, next) => {
         try {
             const product = req.body;
-            const newProduct = await req.service.newProductRegistration(product)
+            const newProduct = await newProductRegistration(product)
             res.json(newProduct);
         } catch (e) {
             next(e)
@@ -21,7 +23,7 @@ const ProductController = () => {
     const updateProduct = async (req, res, next) => {
         try {
             const product = req.body;
-            const updatedProduct = await req.service.updateProductInfo(product);
+            const updatedProduct = await updateProductInfo(product);
             res.json(updatedProduct);
         } catch (e) {
             next(e)
@@ -31,7 +33,7 @@ const ProductController = () => {
     const deleteProduct = async (req, res, next) => {
         try {
             const productId = req.query.id;
-            const id = await req.service.deactivatedProduct(productId)
+            const id = await deactivatedProduct(productId)
             res.json({id: id});
         } catch (e) {
             next(e)
