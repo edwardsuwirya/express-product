@@ -5,14 +5,14 @@ const errorMiddleware = require('./middleware/error.middleware')
 const jsonMiddleware = require('./middleware/json.middleware')
 const noRoute = require("./routes/no.route");
 const errorRoute = require("./routes/error.route");
-const log = require("./logger");
+const log = require("../logger");
 const requestLogMiddleware = require("./middleware/requestlog.middleware");
 const ProductRoute = require("./routes/product.route");
-const Config = require("./config/config");
-const InfraManager = require("./manager/infra.manager");
-const ServiceManager = require("./manager/service.manager");
+const Config = require("../config/config");
+const InfraManager = require("../manager/infra.manager");
+const ServiceManager = require("../manager/service.manager");
 const ProductController = require("./controller/product.controller");
-const RepositoryManager = require("./manager/repository.manager");
+const RepositoryManager = require("../manager/repository.manager");
 const AppRouter = require("./routes");
 
 
